@@ -2,6 +2,8 @@
 A personal website created by Noah Rolf 
 
 ## Tech Used
+• ES6
+
 • React.js
 
 • React-Routes
