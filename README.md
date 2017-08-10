@@ -23,4 +23,5 @@ A personal website created by Noah Rolf
 ### Babel and Linting
 Both Node server and frontend code runs with Babel. And all of it is linted. 
 
-### Setup for esLint and babel with https://github.com/christianalfoni/webpack-express-boilerplate
+#### Setup for esLint and babel with 
+https://github.com/christianalfoni/webpack-express-boilerplate
