@@ -8,7 +8,7 @@ A personal website created by Noah Rolf
 
 • Material-UI
 
-• Angular.js
+• eslint
 
 • Node.js
 
