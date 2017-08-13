@@ -22,7 +22,7 @@ function About() {
               <Row>
                 <Col md={3} offset={{md: 1}}>
                   <h1 style={{color: '#FFF'}}>I Am Noah Rolf.</h1>
-                  <Divider style={{backgroundColor: '#000'}} />
+                  <Divider style={{backgroundColor: '#777'}} />
                   <h2 style={{color: '#FFF'}}>A full stack developer who builds interactive web applications that run across platforms and Devices</h2>
                 </Col>
               </Row>
