@@ -7,6 +7,7 @@ import Menu from 'material-ui/svg-icons/navigation/menu';
 import More from 'material-ui/svg-icons/navigation/more-horiz';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {cyan500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
@@ -14,22 +15,40 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowDropLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import Copy from 'material-ui/svg-icons/content/content-copy';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import Snackbar from 'material-ui/Snackbar';
+import { SocialIcon } from 'react-social-icons';
+import { ScreenClassRender } from 'react-grid-system';
 // import { styles } from './styles.js';
+
+const styleFunction = (screenClass, props) => {
+  let height = 70;
+  let fontSize = 10;
+  if (screenClass === 'sm') {height = 150; fontSize = 56; }
+  if (screenClass === 'md') {height = 125; fontSize = 48; }
+  if (screenClass === 'lg') {height = 70; fontSize = 20; }
+  if (screenClass === 'xl') {height = 70; fontSize = 20; }
+  return {
+    fontSize: `${fontSize}px`,
+    height: `${height}px`,
+    ...props.style,
+  };
+};
 
 const muiTheme = getMuiTheme({
   palette: {
     Color: cyan500,
-  },
-  appBar: {
-    height: 70,
-  },
+  }
 });
 
 export default class SideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      copied: false,
+      snack: false
     };
   }
 
@@ -37,66 +56,105 @@ export default class SideNav extends React.Component {
 
   handleClose = () => this.setState({open: false});
 
+  handleCopy = () => {
+    this.setState({copied: true});
+    this.setState({snack: true});
+  };
+
+  handleRequestClose = () => {this.setState({snack: false, });};
+
   render() {
     return (
       <div>
         <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
-          <AppBar
-            title="Noah Rolf's Portfolio"
-            style={{backgroundColor: '#56c8d8'}}
-            iconElementLeft={
-              <IconButton onTouchTap={this.handleToggle}>
-                <Menu />
-              </IconButton>
-            }
-            iconElementRight={
-              <IconMenu
-                iconButtonElement={<IconButton><More /></IconButton>}
-                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                targetOrigin={{horizontal: 'right', vertical: 'top'}}
-              >
-                <a target="_blank" href="https://www.linkedin.com/in/noah-rolf/" style={{ textDecoration: 'none' }}>
-                  <MenuItem primaryText="LinkedIn" />
-                </a>
-                <a target="_blank" href="https://github.com/Gunnar34" style={{ textDecoration: 'none' }}>
-                  <MenuItem primaryText="Github" />
-                </a>
-                <MenuItem
-                  primaryText="Contact"
-                  leftIcon={<ArrowDropLeft />}
-                  anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          <ScreenClassRender style={styleFunction}>
+            <AppBar
+              title="Noah Rolf"
+              style={{backgroundColor: '#56c8d8'}}
+              iconElementLeft={
+                <IconButton onTouchTap={this.handleToggle}>
+                  <Menu />
+                </IconButton>
+              }
+              iconElementRight={
+                <IconMenu
+                  iconButtonElement={<IconButton><More /></IconButton>}
+                  anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                   targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                  menuItems={[
-                    <a target="_blank" href="mailto:noahrolf1@gmail.com" style={{ textDecoration: 'none' }}>
-                      <MenuItem primaryText="noahrolf1@gmail.com"/>
-                    </a>,
-                    <MenuItem primaryText="(651)-788-3057"/>,
-                    <Divider />,
-                    <MenuItem primaryText="Prime Academy" secondaryText="| Student"/>,
-                  ]}
-                />
-              </IconMenu>
-            }
-          />
+                >
+                  <a target="_blank" href="https://www.linkedin.com/in/noah-rolf/" style={{ textDecoration: 'none' }}>
+                    <MenuItem
+                      primaryText="LinkedIn"
+                      leftIcon={<SocialIcon url="https://www.linkedin.com/in/noah-rolf/"/>}
+                    />
+                  </a>
+                  <a target="_blank" href="https://github.com/Gunnar34" style={{ textDecoration: 'none' }}>
+                    <MenuItem
+                      primaryText="Github"
+                      leftIcon={<SocialIcon url="https://github.com/Gunnar34"/>}
+                    />
+                  </a>
+                  <MenuItem
+                    primaryText="Contact"
+                    leftIcon={<ArrowDropLeft />}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                    menuItems={[
+                      // <a href="mailto:noahrolf1@gmail.com" style={{ textDecoration: 'none' }}>
+                      <CopyToClipboard text={"noahrolf1@gmail.com"} onCopy={this.handleCopy}>
+                        <MenuItem
+                          primaryText="noahrolf1@gmail.com"
+                          leftIcon={<Copy />}
+                        />
+                      </CopyToClipboard>,
+                      // </a>,
+                      <CopyToClipboard text={"(651)-788-3057"} onCopy={this.handleCopy}>
+                        <MenuItem
+                          primaryText="(651)-788-3057"
+                          leftIcon={<Copy />}
+                        />
+                      </CopyToClipboard>,
+                      <Divider />,
+                      <MenuItem disabled primaryText="Prime Academy" secondaryText="| Student"/>,
+                    ]}
+                  />
+                </IconMenu>
+              }
+            />
+          </ScreenClassRender>
         </MuiThemeProvider>
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <Drawer
-            containerStyle={{height: 'calc(100% - 64px)', top: 64}}
+            containerStyle={{height: 'calc(100% - 78px)', top: 78, backgroundColor: '#c2c2c2'}}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})
             }
           >
             <AppBar title="More"
+              style={{backgroundColor: '#B7CE63'}}
               iconElementLeft={
                 <IconButton onTouchTap={this.handleToggle}>
-                  <ActionHome />
+                  <Link to="/" style={{ textDecoration: 'none'}}>
+                    <ActionHome />
+                  </Link>
                 </IconButton>
               }
             />
-            <Link to="/" style={{ textDecoration: 'none' }}><MenuItem onTouchTap={this.handleClose}>Home</MenuItem></Link>
-            <Link to="/about" style={{ textDecoration: 'none' }}><MenuItem onTouchTap={this.handleClose}>About Me</MenuItem></Link>
+            <Link to="/" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>Home</MenuItem></Link>
+            <Link to="/about" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>About Me</MenuItem></Link>
+            <Link to="/projects" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>My Projects</MenuItem></Link>
+            <Link to="/resume" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>My Resume</MenuItem></Link>
+            <Link to="/contact" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>Contact Me</MenuItem></Link>
           </Drawer>
+        </MuiThemeProvider>
+        <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+          <Snackbar
+            open={this.state.snack}
+            message="Copied To Your Clipboard"
+            autoHideDuration={3000}
+            onRequestClose={this.handleRequestClose}
+          />
         </MuiThemeProvider>
         </div>
     );

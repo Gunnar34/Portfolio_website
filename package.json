@@ -23,9 +23,13 @@
   "dependencies": {
     "babel-cli": "^6.4.0",
     "babel-core": "^6.22.1",
+    "body-parser": "^1.17.2",
     "material-ui": "^0.18.7",
+    "nodemailer": "^4.0.1",
     "react": "^15.6.1",
+    "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
+    "react-grid-system": "^2.9.6",
     "react-router-dom": "^4.1.2",
     "react-tap-event-plugin": "^2.0.1"
   },
@@ -53,6 +57,7 @@
     "mocha": "^2.3.3",
     "mocha-jsdom": "^1.0.0",
     "postcss-loader": "^0.6.0",
+    "react-social-icons": "^2.7.0",
     "react-transform-hmr": "^1.0.0",
     "rimraf": "^2.4.3",
     "sinon": "^1.16.1",
@@ -61,6 +66,7 @@
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
+    "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.2.0"
   }
 }
