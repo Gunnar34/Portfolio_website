@@ -8,7 +8,7 @@ var StatsPlugin = require('stats-webpack-plugin');
 
 module.exports = {
   entry: [
-    path.join(__dirname, 'app/main.js')
+    path.join(__dirname, 'app/scripts/main.js')
   ],
   output: {
     path: path.join(__dirname, '/dist/'),
@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      template: 'app/index.html',
+      template: 'app/view/index.html',
       inject: 'body',
       filename: 'index.html'
     }),
@@ -45,13 +45,27 @@ module.exports = {
       query: {
         "presets": ["es2015", "stage-0", "react"]
       }
-    }, {
-      test: /\.json?$/,
-      loader: 'json'
+    },  {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loader: "file-loader?name=/images/[name].[ext]"
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
-    }]
+      loader: 'style!css!postcss',
+      include: path.join(__dirname, '../node_modules'), // oops, this also includes flexboxgrid
+      exclude: /flexboxgrid/, // so we have to exclude it
+    },  {
+      test: /\.css$/,
+      loader: 'style!css?modules',
+      include: /flexboxgrid/,
+    },  {
+      test: /\.json?$/,
+      loader: 'json'
+    },
+    // {
+    //   test: /\.css$/,
+    //   loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+    // }
+  ]
   },
   postcss: [
     require('autoprefixer')
