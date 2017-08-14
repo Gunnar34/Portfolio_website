@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from 'material-ui/IconButton';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import IconMenu from 'material-ui/IconMenu';
 import Menu from 'material-ui/svg-icons/navigation/menu';
 import More from 'material-ui/svg-icons/navigation/more-horiz';
@@ -69,7 +70,6 @@ export default class SideNav extends React.Component {
         <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
           <ScreenClassRender style={styleFunction}>
             <AppBar
-              title="Noah Rolf"
               style={{backgroundColor: '#56c8d8'}}
               iconElementLeft={
                 <IconButton onTouchTap={this.handleToggle}>
@@ -125,24 +125,31 @@ export default class SideNav extends React.Component {
         </MuiThemeProvider>
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <Drawer
-            containerStyle={{height: 'calc(100% - 78px)', top: 78, backgroundColor: '#c2c2c2'}}
+            containerStyle={{height: '100%', top: '8px', backgroundColor: 'rgba(48, 48, 48, .9)'}}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({open})
             }
           >
-            <AppBar title="More"
-              style={{backgroundColor: '#B7CE63'}}
-              iconElementLeft={
-                <IconButton onTouchTap={this.handleToggle}>
-                  <Link to="/" style={{ textDecoration: 'none'}}>
-                    <ActionHome />
-                  </Link>
-                </IconButton>
-              }
-            />
+            <ScreenClassRender style={styleFunction}>
+              <AppBar title="More"
+                titleStyle={{color: '#FFF'}}
+                style={{backgroundColor: '#9BDCDE', opacity: 1}}
+                iconElementLeft={
+                  <IconButton onTouchTap={this.handleToggle}>
+                    <Link to="/" style={{ textDecoration: 'none'}}>
+                      <ActionHome />
+                    </Link>
+                  </IconButton>
+                }
+                iconElementRight={
+                  <IconButton onTouchTap={this.handleToggle}>
+                    <NavigationClose color="#FFF" />
+                  </IconButton>
+                }
+              />
+            </ScreenClassRender>
             <Link to="/" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>Home</MenuItem></Link>
-            <Link to="/about" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>About Me</MenuItem></Link>
             <Link to="/projects" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>My Projects</MenuItem></Link>
             <Link to="/resume" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>My Resume</MenuItem></Link>
             <Link to="/contact" style={{ textDecoration: 'none'}}><MenuItem onTouchTap={this.handleClose} style={{color: '#eee'}}>Contact Me</MenuItem></Link>

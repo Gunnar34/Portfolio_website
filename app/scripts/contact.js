@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
-import {blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
@@ -61,54 +60,54 @@ export default class Resume extends React.Component {
               <Col md={6} offset={{md: 3}} style={{textAlign: 'center', color: '#FFF'}}>
                 <h1>Ready to get in contact?</h1>
               </Col>
-              <Col md={12} style={{backgroundColor: '#f7f7f7', marginTop: '50px'}}>
+              <Col md={12} lg={8} offset={{lg: 2}} style={{backgroundColor: '#f7f7f7', marginTop: '50px'}}>
                 <div>
                   <TextField
                     floatingLabelText="Email Address"
                     floatingLabelStyle={{color: '#777'}}
-                    floatingLabelFocusStyle={{color: blue500}}
-                    underlineFocusStyle={{borderColor: blue500}}
+                    floatingLabelFocusStyle={{color: '#56c8d8'}}
+                    underlineFocusStyle={{borderColor: '#56c8d8'}}
                     underlineStyle={{borderColor: '#777'}}
-                    inputStyle={{color: '#303030'}}
+                    inputStyle={{color: '#303030', width: '100%'}}
                     value={this.state.email}
                     onChange={this.handleEmail}
                   /><br />
                   <TextField
                     floatingLabelText="First Name"
                     floatingLabelStyle={{color: '#777'}}
-                    floatingLabelFocusStyle={{color: blue500}}
-                    underlineFocusStyle={{borderColor: blue500}}
+                    floatingLabelFocusStyle={{color: '#56c8d8'}}
+                    underlineFocusStyle={{borderColor: '#56c8d8'}}
                     underlineStyle={{borderColor: '#777'}}
-                    inputStyle={{color: '#303030'}}
+                    inputStyle={{color: '#303030', width: '100%'}}
                     value={this.state.first}
                     onChange={this.handleFirstName}
                   /><br />
                   <TextField
                     floatingLabelText="Last Name"
                     floatingLabelStyle={{color: '#777'}}
-                    floatingLabelFocusStyle={{color: blue500}}
-                    underlineFocusStyle={{borderColor: blue500}}
+                    floatingLabelFocusStyle={{color: '#56c8d8'}}
+                    underlineFocusStyle={{borderColor: '#56c8d8'}}
                     underlineStyle={{borderColor: '#777'}}
-                    inputStyle={{color: '#303030'}}
+                    inputStyle={{color: '#303030', width: '100%'}}
                     value={this.state.last}
                     onChange={this.handleLastName}
                   /><br />
                   <TextField
                     floatingLabelText="Message"
                     multiLine
-                    rows={3}
+                    rows={2}
                     floatingLabelStyle={{color: '#777'}}
-                    floatingLabelFocusStyle={{color: blue500}}
-                    underlineFocusStyle={{borderColor: blue500}}
+                    floatingLabelFocusStyle={{color: '#56c8d8'}}
+                    underlineFocusStyle={{borderColor: '#56c8d8'}}
                     underlineStyle={{borderColor: '#777'}}
-                    textareaStyle={{color: '#303030'}}
+                    textareaStyle={{color: '#303030', width: '100%'}}
                     style={{marginBottom: '25px'}}
                     value={this.state.text}
                     onChange={this.handleText}
                   /><br />
                 </div>
                 <RaisedButton
-                  backgroundColor={blue500}
+                  backgroundColor={'#56c8d8'}
                   buttonStyle={{color: '#FFF'}}
                   style={{
                     marginBottom: '25px'

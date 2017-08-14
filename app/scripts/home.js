@@ -1,8 +1,15 @@
 import React from 'react';
-import Img from '!!file!../../images/noah2.jpg';
+import { Link } from 'react-router-dom';
 import Img2 from '!!file!../../images/comp.jpg';
-import { Row, Col, Visible } from 'react-grid-system';
-
+import { Row, Col, Container } from 'react-grid-system';
+import Divider from 'material-ui/Divider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { SocialIcon } from 'react-social-icons';
+import IconButton from 'material-ui/IconButton';
+import Folder from 'material-ui/svg-icons/file/folder-open';
+import Mail from 'material-ui/svg-icons/communication/mail-outline';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,43 +20,54 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div style={{
-        backgroundImage: 'url(' + Img2 + ')',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        width: 'calc(100vw - 15px)',
-        height: 'calc(100vh - 74px)'
-      }}>
-        <Row>
-          <Col offset={{md: 1, sm: 1, xs: 2}} xs={6} sm={4} md={5} lg={3} xl={2} style={{
-            backgroundColor: '#FFF',
-            textAlign: 'center',
-            marginTop: '20px',
-            borderRadius: '10%',
-          }}>
-            <img src={Img} style={{
-              borderRadius: '50%',
-              height: '25vh',
-              width: '20vh'
-            }}/>
-            <Visible md sm xs>
-              <Row>
-                <h1 style={{fontSize: '54px'}}>Skilled In</h1>
-                <Col xs={4}>
-                  <ul style={{fontSize: '36px'}}>
-                    <li>React.js</li>
-                    <li>Angular.js</li>
-                    <li>Node.js</li>
-                    <li>Express</li>
-                    <li>MongoDB</li>
-                    <li>jQuery</li>
-                    <li>postgresSQL</li>
-                  </ul>
-                </Col>
-              </Row>
-            </Visible>
-          </Col>
-        </Row>
+      <div>
+        <div style={{
+          backgroundImage: 'url(' + Img2 + ')',
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+          width: 'calc(100vw - 15px)',
+          height: '100vh'
+        }}>
+          <Row>
+            <Col md={3}>
+              <h1 style={{color: '#FFF', marginLeft: '30px'}}>I Am Noah Rolf.</h1>
+              <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+                <Divider style={{backgroundColor: '#FFF', marginLeft: '30px', height: '3px'}} />
+              </MuiThemeProvider>
+              <h2 style={{color: '#FFF', marginLeft: '30px'}}>A full stack developer who builds interactive web applications that run across platforms and Devices</h2>
+            </Col>
+          </Row>
+        </div>
+        <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+          <Container>
+            <Row>
+              <Col md={3} style={{textAlign: 'center'}}>
+                <SocialIcon url="https://www.linkedin.com/in/noah-rolf/" style={{ height: 150, width: 150, margin: 40, marginBottom: 5 }}/>
+                <h3 style={{color: '#fff'}}>linkedin</h3>
+              </Col>
+              <Col md={3} style={{textAlign: 'center'}}>
+                <SocialIcon url="https://github.com/Gunnar34" color="#000" style={{ height: 150, width: 150, margin: 40, marginBottom: 5}}/>
+                <h3 style={{color: '#fff'}}>Github</h3>
+              </Col>
+              <Col md={3} style={{textAlign: 'center'}}>
+                <Link to="/resume" style={{ textDecoration: 'none'}}>
+                  <IconButton style={{margin: 40, marginBottom: 5, height: 150, width: 150, padding: 0}} iconStyle={{height: 150, width: 150, margin: 0}}>
+                    <Folder color="#BE1335" />
+                  </IconButton>
+                </Link>
+                <h3 style={{color: '#fff'}}>Resume</h3>
+              </Col>
+              <Col md={3} style={{textAlign: 'center'}}>
+                <Link to="/contact" style={{ textDecoration: 'none'}}>
+                  <IconButton style={{margin: 40, marginBottom: 5, height: 150, width: 150, padding: 0}} iconStyle={{height: 150, width: 150, margin: 0}}>
+                    <Mail color="#FDF10D" />
+                  </IconButton>
+                </Link>
+                <h3 style={{color: '#fff'}}>Contact Me</h3>
+              </Col>
+            </Row>
+          </Container>
+        </MuiThemeProvider>
       </div>
     );
   }
