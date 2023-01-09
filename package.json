@@ -4,7 +4,8 @@
   "description": "A boilerplate for running a Webpack workflow in Node express",
   "main": "server.js",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/christianalfoni/webpack-express-boilerplate.git"
   },
   "keywords": [
     "express",
