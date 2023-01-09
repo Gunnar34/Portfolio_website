@@ -25,6 +25,7 @@
     "babel-cli": "^6.4.0",
     "babel-core": "^6.22.1",
     "body-parser": "^1.17.2",
+    "cross-env": "^1.0.7",
     "material-ui": "^0.18.7",
     "nodemailer": "^4.0.1",
     "react": "^15.6.1",
